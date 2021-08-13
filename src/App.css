@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.4em;
+  font-family: "Caveat", cursive;
+  background-color: #9bc8e1;
+  color: white;
+}
+.App {
+  max-width: 650px;
+  margin: auto;
+}
+
+.title {
+  width: fit-content;
+  margin: auto;
+  text-align: center;
+  margin-top: 15px;
+}
+.game-wrapp {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.slovo-wrapp {
+  font-family: "Caveat", cursive;
+  font-size: 1.2em;
+  margin-left: 5px;
+  display: inline-block;
+  border-bottom: 3px solid white;
+  width: 13px;
+}
+
+.word-wrapp {
+  flex: 2;
+
+  text-align: center;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+@media only screen and (min-width: 530px) {
+  .slovo-wrapp {
+    font-size: 1.5em;
+    width: 16px;
+    margin-left: 7px;
+  }
+}

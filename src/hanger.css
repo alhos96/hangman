@@ -1,0 +1,61 @@
+.hanger-wrapp {
+  height: 255px; /*ima overflow ali su se slova podigla */
+  width: 200px;
+  flex: 1;
+  margin-top: 75px;
+  margin-left: 8px;
+
+  /*  positi on: absolute; */
+}
+
+img {
+  display: block;
+}
+
+#hanger {
+  height: 215px;
+  position: relative;
+}
+
+#head {
+  height: 33px;
+  position: relative;
+  top: -188px;
+  left: 105px;
+}
+
+#body {
+  height: 79px;
+  position: relative;
+  top: -182px;
+  left: 113px;
+}
+#myLeftArm {
+  height: 23px;
+  position: relative;
+  top: -260px;
+  left: 95px;
+}
+#myRightArm {
+  height: 25px;
+
+  position: relative;
+  top: -282px;
+  left: 131px;
+}
+
+#myLeftLeg {
+  height: 28px;
+
+  position: relative;
+  top: -241px;
+  left: 93px;
+}
+
+#myRightLeg {
+  height: 26px;
+
+  position: relative;
+  top: -267px;
+  left: 125px;
+}
