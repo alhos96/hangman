@@ -1,9 +1,17 @@
 import React from "react";
 
-function Word() {
-  const sveRijeci = ["paragossssfdfss", "kruska", "sljiva"];
-
-  return <div className="word-wrapp"></div>;
+function Word({ randomWord, correctLetters }) {
+  return (
+    <div className="word-wrapp">
+      {randomWord.split("").map((e, i) => {
+        return (
+          <p className="letter" key={i}>
+            {correctLetters.includes(e) ? e : ""}
+          </p>
+        );
+      })}
+    </div>
+  );
 }
 
 export default Word;

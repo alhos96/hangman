@@ -9,7 +9,7 @@
 }
 
 body {
-  font-size: 1.4em;
+  font-size: clamp(22px, 3vw, 30px);
   font-family: "Caveat", cursive;
   background-color: #9bc8e1;
   color: white;
@@ -35,26 +35,57 @@ body {
   visibility: hidden;
 }
 
-.slovo-wrapp {
+.letter {
   font-family: "Caveat", cursive;
   font-size: 1.2em;
+  margin: auto;
   margin-left: 5px;
   display: inline-block;
   border-bottom: 3px solid white;
   width: 13px;
+  flex: 2;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 .word-wrapp {
   flex: 2;
-
   text-align: center;
   margin: auto;
   margin-bottom: 50px;
 }
 
+.play-again {
+  width: 50%;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
+  background-color: rgb(255, 184, 0, 0.7);
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.play-again-button {
+  margin-top: 25px;
+  border: none;
+  background-color: #9699c6;
+  color: white;
+  font-weight: 600;
+  font-family: monospace;
+  padding: 10px;
+  transition: 0.2s ease;
+}
+
+.play-again-button:hover {
+  cursor: pointer;
+  background-color: #8699c6;
+}
+
 @media only screen and (min-width: 530px) {
-  .slovo-wrapp {
-    font-size: 1.5em;
+  .letter {
     width: 16px;
     margin-left: 7px;
   }
