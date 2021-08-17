@@ -11,12 +11,15 @@ function App() {
   const [wrongLetters, setWrongLetters] = useState([]);
   const [counter, setCounter] = useState(0);
   const [showNotLetterError, setShowNotLetterError] = useState("hidden");
+  const [showSameLetterError, setShowSameLetterError] = useState("hidden");
+
   const [callEffect, setCallEffect] = useState("hidden");
 
   useEffect(() => {
     async function getWords() {
       const res = await data.get("/word?number=100");
-      setRandomWord(res.data[Math.floor(Math.random() * 10)]);
+      /* setRandomWord(res.data[Math.floor(Math.random() * 10)]); */
+      setRandomWord("jabuka");
     }
     getWords();
   }, [callEffect]);
@@ -32,8 +35,15 @@ function App() {
             setCorrectLetters((currentLetters) => [...currentLetters, letter]);
           }
         } else if (!randomWord.includes(letter)) {
-          setWrongLetters((currentLetters) => [...currentLetters, letter]);
-          setCounter((counter) => counter + 1);
+          if (wrongLetters.includes(letter)) {
+            setShowSameLetterError("visible");
+            setTimeout(() => {
+              setShowSameLetterError("hidden");
+            }, 200);
+          } else {
+            setWrongLetters((currentLetters) => [...currentLetters, letter]);
+            setCounter((counter) => counter + 1);
+          }
         }
       } else {
         setShowNotLetterError("visible");
@@ -45,12 +55,12 @@ function App() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [randomWord]);
+  }, [randomWord, wrongLetters]);
 
   function playAgain() {
     return (
       <div className="play-again">
-        <p className="play-agan-paragraph">Dobro si se borio i u keks pretvorio..</p>
+        <p className="play-agan-paragraph">Play again?</p>
         <button
           className="play-again-button"
           onClick={() => {
@@ -61,7 +71,7 @@ function App() {
             setCallEffect((call) => call + 1);
           }}
         >
-          Play Again!
+          Yes please!
         </button>
       </div>
     );
@@ -90,12 +100,13 @@ function App() {
         </div>
         <div className="game-wrapp">
           <Hanger counter={counter} playAgain={playAgain}></Hanger>
-          <Word randomWord={randomWord} correctLetters={correctLetters}>
+          <Word randomWord={randomWord} correctLetters={correctLetters} playAgain={playAgain}>
             {" "}
           </Word>
         </div>
 
         <p style={{ visibility: showNotLetterError, width: "fit-content", margin: "auto", color: "red" }}>Type a letter please!</p>
+        <p style={{ visibility: showSameLetterError, width: "fit-content", margin: "auto", color: "red" }}>You already typed that!</p>
         <p style={{ width: "fit-content", margin: "auto", color: "white" }}>
           Wrong letters: &nbsp;
           {wrongLetters.map((e, i) => {
