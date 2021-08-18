@@ -13,16 +13,16 @@ function App() {
   const [showNotLetterError, setShowNotLetterError] = useState("hidden");
   const [showSameLetterError, setShowSameLetterError] = useState("hidden");
 
-  const [callEffect, setCallEffect] = useState("hidden");
+  const [trigerEffect, setTrigerEffect] = useState(0);
 
   useEffect(() => {
     async function getWords() {
       const res = await data.get("/word?number=100");
-      /* setRandomWord(res.data[Math.floor(Math.random() * 10)]); */
-      setRandomWord("jabuka");
+      setRandomWord(res.data[Math.floor(Math.random() * 10)]);
+      /* setRandomWord("jabuka");*/
     }
     getWords();
-  }, [callEffect]);
+  }, [trigerEffect]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -30,7 +30,7 @@ function App() {
         const letter = e.key.toLowerCase();
 
         if (randomWord === undefined) {
-        } else if (randomWord.includes(letter)) {
+        } else if (randomWord.includes(letter) && counter < 5) {
           if (!correctLetters.includes(letter)) {
             setCorrectLetters((currentLetters) => [...currentLetters, letter]);
           }
@@ -39,17 +39,18 @@ function App() {
             setShowSameLetterError("visible");
             setTimeout(() => {
               setShowSameLetterError("hidden");
-            }, 200);
-          } else {
+            }, 700);
+          } else if (counter < 5) {
             setWrongLetters((currentLetters) => [...currentLetters, letter]);
             setCounter((counter) => counter + 1);
+          } else {
           }
         }
       } else {
         setShowNotLetterError("visible");
         setTimeout(() => {
           setShowNotLetterError("hidden");
-        }, 200);
+        }, 700);
       }
     };
 
@@ -68,7 +69,7 @@ function App() {
             setCorrectLetters([]);
             setWrongLetters([]);
             setCounter(0);
-            setCallEffect((call) => call + 1);
+            setTrigerEffect((call) => call + 1);
           }}
         >
           Yes please!

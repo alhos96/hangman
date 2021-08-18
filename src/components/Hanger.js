@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 
 import hanger from "../bodyParts/hanger.svg";
 import head from "../bodyParts/head.svg";
