@@ -14,11 +14,20 @@ function App() {
   const [showSameLetterError, setShowSameLetterError] = useState("hidden");
 
   const [trigerEffect, setTrigerEffect] = useState(0);
+  const [winOrLose, setWinOrLose] = useState(true);
+
+  useEffect(() => {
+    if (counter === 5) {
+      setWinOrLose(false);
+    }
+  }, [counter]);
 
   useEffect(() => {
     async function getWords() {
-      const res = await data.get("/word?number=100");
-      setRandomWord(res.data[Math.floor(Math.random() * 10)]);
+      const res = await data.get("/word?number=1");
+      console.log(res);
+      /* setRandomWord(res.data[Math.floor(Math.random() * 10)]); */
+      setRandomWord(res.data[0]);
       /* setRandomWord("jabuka");*/
     }
     getWords();
@@ -61,7 +70,14 @@ function App() {
   function playAgain() {
     return (
       <div className="play-again">
-        <p className="play-agan-paragraph">Play again?</p>
+        {winOrLose ? (
+          <p className="play-agan-paragraph">Well done! Play again?</p>
+        ) : (
+          <p className="play-agan-paragraph">
+            You lost! Play again? <br></br> Correct word was: {randomWord}
+          </p>
+        )}
+
         <button
           className="play-again-button"
           onClick={() => {
